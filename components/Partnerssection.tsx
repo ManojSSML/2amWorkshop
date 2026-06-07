@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 const LOGOS = [
-  { src: '/partners/3.svg',  alt: 'Partner 1' },
+  { src: '/partners/3.svg',  alt: 'PartnerImage 1' },
   { src: '/partners/4.svg',  alt: 'Partner 2' },
   { src: '/partners/5.svg',  alt: 'Partner 3' },
   { src: '/partners/6.svg',  alt: 'Partner 4' },
@@ -113,7 +113,7 @@ function PartnersSection() {
               onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(26,26,24,0.25)')}
               onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(26,26,24,0.1)')}
             >
-              <img
+              <img  
                 src={logo.src}
                 alt={logo.alt}
                 style={{
