@@ -43,24 +43,24 @@ export default function AgentsSection() {
         }}>
           <h2 style={{
             fontFamily: 'var(--serif)',
-            fontSize: '3rem',
+            fontSize: '2.8rem',
             fontWeight: 400,
             lineHeight: 1.12,
             letterSpacing: '-0.02em',
             color: '#1a1a18',
             marginBottom: '24px',
           }}>
-            A collection of<br />personal agents
+            A collection of<br />thoughts.
           </h2>
           <p style={{
             fontFamily: 'var(--sans)',
-            fontSize: '1.2rem',
+            fontSize: '1.1rem',
             fontWeight: 300,
             lineHeight: 1.7,
             color: 'rgba(26,26,24,0.6)',
             marginBottom: '36px',
           }}>
-            Think out loud. Follow a thread. Discover something unexpected. Sesame agents are made for the in-between moments.
+            Think out loud. Follow a thread. Discover something unexpected.Workshops by 2amWorkshop.
           </p>
           <a href="/mobile-preview" style={{
             display: 'inline-block',
@@ -71,7 +71,7 @@ export default function AgentsSection() {
             textDecoration: 'none',
             padding: '13px 28px',
             border: '1.5px solid rgba(26,26,24,0.3)',
-            borderRadius: '100px',
+            borderRadius: '15px',
             letterSpacing: '0.01em',
             transition: 'border-color 0.25s, transform 0.25s',
           }}

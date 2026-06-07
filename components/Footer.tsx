@@ -22,7 +22,6 @@ export default function Footer() {
             style={{
               height: '320px',
               width: 'auto',
-              
               display: 'block',
               opacity: 0.15,
             }}
@@ -76,6 +75,23 @@ export default function Footer() {
               >{icon}{label}</a>
             ))}
           </div>
+        </div>
+
+        {/* Company address — below the link grid */}
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '32px' }}>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '2px' }}>
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+          <span style={{
+            fontFamily: 'var(--sans)',
+            fontSize: '14px',
+            fontWeight: 500,
+            color: 'rgba(255,255,255,0.35)',
+            lineHeight: '1.5',
+          }}>
+            1 Ropemaker St, Moorgate, London EC2Y 9AW
+          </span>
         </div>
 
         {/* Bottom bar — copyright left, links right, same line */}

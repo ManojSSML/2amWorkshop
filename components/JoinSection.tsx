@@ -51,7 +51,7 @@ export default function JoinSection() {
             color: '#1a1a18',
             marginBottom: '24px',
           }}>
-            Join us
+            Join us   
           </h2>
           <p style={{
             fontFamily: 'var(--sans)',
@@ -63,8 +63,8 @@ export default function JoinSection() {
           }}>
             Sesame is an interdisciplinary team of artists, makers, and engineers focused on bringing ambient intelligence to daily life.{' '}
             <a href="/team" style={{ color: 'rgba(26,26,24,0.75)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>
-              Learn more about our team and mission
-            </a>.
+              Learn more about our team and mission .
+            </a>
           </p>
           <a href="/careers" style={{
             display: 'inline-block',
@@ -88,7 +88,7 @@ export default function JoinSection() {
             (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
           }}
           >
-            Careers at Sesame
+            Careers at 2AMWorkshop
           </a>
         </div>
 

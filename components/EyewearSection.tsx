@@ -61,7 +61,7 @@ export default function EyewearSection() {
               color: '#ffffff',
               marginBottom: '24px',
             }}>
-              Beautiful,<br />intelligent<br />eyewear
+              Not every turning<br />point arrive<br />with certainty.
             </h2>
             <p style={{
               fontFamily: 'var(--sans)',
@@ -70,7 +70,13 @@ export default function EyewearSection() {
               lineHeight: 1.7,
               color: 'rgba(255,255,255,0.82)',
             }}>
-              All-day comfort with high-quality audio. Talk to your agent hands-free, so you can stay focused on what is in front of you. Coming 2027.
+              Sometimes it begins with a question.
+Sometimes with a conversation. < br / >
+Sometimes with a workshop.<br />
+And before you realize it,
+you're seeing possibilities you couldn't see before.<br />
+At 2AMWORKSHOP.
+
             </p>
           </div>
         </div>

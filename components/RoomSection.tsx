@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-
 const IMAGES = [
   '/gallery/1.png',
   '/gallery/2.png',
@@ -15,23 +13,8 @@ const IMAGES = [
 ];
 
 function RoomSection() {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
-      ref={ref}
       data-section="room"
       style={{
         background: '#EDECEA',
@@ -57,9 +40,6 @@ function RoomSection() {
             color: '#1a1a18',
             marginBottom: '64px',
             letterSpacing: '-0.01em',
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 0.8s ease, transform 0.8s ease',
           }}
         >
           Be in the room with&hellip;
@@ -81,9 +61,6 @@ function RoomSection() {
                 overflow: 'hidden',
                 aspectRatio: '3/4',
                 background: '#1a1a18',
-                opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0)' : 'translateY(32px)',
-                transition: `opacity 0.7s ease ${0.1 + i * 0.06}s, transform 0.7s ease ${0.1 + i * 0.06}s`,
               }}
             >
               <img
