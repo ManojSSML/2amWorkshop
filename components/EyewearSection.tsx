@@ -20,7 +20,7 @@ export default function EyewearSection() {
       position: 'relative',
       width: '100%',
       height: '100vh',
-      minHeight: '900px',
+      minHeight: 'min(900px, 100vw)',
       overflow: 'hidden',
       background: '#1a1a18',
     }}>
@@ -61,7 +61,7 @@ export default function EyewearSection() {
               color: '#ffffff',
               marginBottom: '24px',
             }}>
-              Not every,<br />turning point arrives<br />with certainty.
+              Beautiful,<br />intelligent<br />eyewear
             </h2>
             <p style={{
               fontFamily: 'var(--sans)',
@@ -70,13 +70,7 @@ export default function EyewearSection() {
               lineHeight: 1.7,
               color: 'rgba(255,255,255,0.82)',
             }}>
-              Sometimes it begins with a question.
-              Sometimes with a conversation.
-              Sometimes with a workshop.
-              And before you realize it,
-              you're seeing possibilities you couldn't see before.
-              At 2AMWORKSHOP.
-
+              All-day comfort with high-quality audio. Talk to your agent hands-free, so you can stay focused on what is in front of you. Coming 2027.
             </p>
           </div>
         </div>

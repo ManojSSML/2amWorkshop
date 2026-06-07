@@ -3,7 +3,7 @@ import Hero from '@/components/Hero';
 import AgentsSection from '@/components/AgentsSection';
 import EyewearSection from '@/components/EyewearSection';
 import JoinSection from '@/components/JoinSection';
-import PartnersSection from '@/components/Partnerssection';
+import PartnersSection from '@/components/PartnersSection';
 import RoomSection from '@/components/RoomSection';
 import Footer from '@/components/Footer';
 

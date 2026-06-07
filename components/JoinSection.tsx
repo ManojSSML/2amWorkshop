@@ -75,7 +75,7 @@ export default function JoinSection() {
             textDecoration: 'none',
             padding: '13px 28px',
             border: '1.5px solid rgba(26,26,24,0.3)',
-            borderRadius: '15px',
+            borderRadius: '100px',
             letterSpacing: '0.01em',
             transition: 'border-color 0.25s, transform 0.25s',
           }}
@@ -88,7 +88,7 @@ export default function JoinSection() {
             (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
           }}
           >
-            Careers at 2AMWorkshop
+            Careers at Sesame
           </a>
         </div>
 
@@ -96,6 +96,7 @@ export default function JoinSection() {
           flexShrink: 0,
           width: '500px',
           height: '384px',
+          maxWidth: '100%',
           opacity: visible ? 1 : 0,
           transform: visible ? 'translateY(0)' : 'translateY(28px)',
           transition: 'opacity 0.9s ease 0.3s, transform 0.9s ease 0.3s',
