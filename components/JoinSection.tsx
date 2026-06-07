@@ -88,7 +88,7 @@ export default function JoinSection() {
             (e.currentTarget as HTMLElement).style.transform = 'translateY(0)';
           }}
           >
-            Careers at Sesame
+            Careers at 2AMWorkshop
           </a>
         </div>
 

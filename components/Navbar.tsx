@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 const NAV_LINKS = [
-  { label: 'About Us',       href: '#agents'    },
-  { label: 'Why Us !!',      href: '#eyewear'   },
-  { label: 'Join Workshop',  href: '#join'      },
-  { label: 'Partnerships',   href: '#'          },
-  { label: 'Footer',         href: '#footer'    },
+  { label: 'About Us',      href: '#agents'       },
+  { label: 'Why Us !!',     href: '#eyewear'      },
+  { label: 'Join Workshop', href: '#join'         },
+  { label: 'Partnerships',  href: '#partnerships' },
+  { label: 'Footer',        href: '#footer'       },
 ];
 
 export default function Navbar() {
@@ -19,7 +19,7 @@ export default function Navbar() {
     const handleScroll = () => {
       const NAVBAR_HEIGHT = 72;
       const lightSections = document.querySelectorAll(
-        '[data-section="agents"], [data-section="join"], [data-section="room"]'
+        '[data-section="agents"], [data-section="join"], [data-section="room"], [data-section="partners"]'
       );
       let overLight = false;
       lightSections.forEach((section) => {
@@ -28,7 +28,6 @@ export default function Navbar() {
       });
       setIsDark(!overLight);
     };
-
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
@@ -38,15 +37,13 @@ export default function Navbar() {
     if (!href.startsWith('#') || href === '#') return;
     e.preventDefault();
     const target = document.querySelector(href);
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     setMenuOpen(false);
   };
 
   const textColor = isDark ? '#ffffff' : '#111111';
   const navbarBg = isDark ? 'transparent' : 'rgba(237,236,234,0.95)';
-  const borderColor = isDark ? 'transparent' : 'rgba(0,0,0,0.08)';
+  
 
   const linkStyle: React.CSSProperties = {
     color: textColor,
@@ -68,9 +65,9 @@ export default function Navbar() {
         height: '72px',
         background: navbarBg,
         backdropFilter: isDark ? 'none' : 'blur(12px)',
-        borderBottom: `1px solid ${borderColor}`,
+        borderBottom: isDark ? 'none' : '1px solid rgba(0,0,0,0.08)',
         transition: 'background 0.3s ease, border-color 0.3s ease',
-        overflow: 'hidden',
+        outline: 'none',
       }}>
         <div style={{
           maxWidth: '968px',
@@ -79,11 +76,11 @@ export default function Navbar() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '0 32px 0 12px',
-          gap: '48px',
+          padding: '0 24px',
         }}>
 
-          <Link href="/" style={{ display: 'flex', alignItems: 'center', height: '72px', flexShrink: 0 }}>
+          {/* Logo */}
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', height: '72px', flexShrink: 0, overflow: 'hidden' }}>
             <img
               src={isDark ? '/logo-light.svg' : '/logo-dark.svg'}
               alt="Logo"
@@ -91,47 +88,116 @@ export default function Navbar() {
             />
           </Link>
 
+          {/* Desktop links */}
           <div className="desktop-menu" style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
             {NAV_LINKS.map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                style={linkStyle}
+              <a key={label} href={href} style={linkStyle}
                 onClick={(e) => scrollTo(e, href)}
                 onMouseEnter={e => (e.currentTarget.style.opacity = '1')}
                 onMouseLeave={e => (e.currentTarget.style.opacity = '0.55')}
-              >
-                {label}
-              </a>
+              >{label}</a>
             ))}
           </div>
 
+          {/* Hamburger — 3 animated bars */}
           <button
             className="mobile-btn"
             onClick={() => setMenuOpen(!menuOpen)}
-            style={{ display: 'none', background: 'none', border: 'none', fontSize: '28px', color: textColor, cursor: 'pointer', transition: 'color 0.3s ease', flexShrink: 0 }}
+            aria-label="Toggle menu"
+            style={{
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '8px',
+              flexShrink: 0,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              gap: '5px',
+              width: '36px',
+              height: '36px',
+            }}
           >
-            ☰
+            <span style={{
+              display: 'block',
+              width: '22px',
+              height: '1.5px',
+              background: textColor,
+              borderRadius: '2px',
+              transition: 'transform 0.3s ease, opacity 0.3s ease, background 0.3s ease',
+              transform: menuOpen ? 'translateY(6.5px) rotate(45deg)' : 'none',
+            }} />
+            <span style={{
+              display: 'block',
+              width: '22px',
+              height: '1.5px',
+              background: textColor,
+              borderRadius: '2px',
+              transition: 'opacity 0.3s ease, background 0.3s ease',
+              opacity: menuOpen ? 0 : 1,
+            }} />
+            <span style={{
+              display: 'block',
+              width: '22px',
+              height: '1.5px',
+              background: textColor,
+              borderRadius: '2px',
+              transition: 'transform 0.3s ease, opacity 0.3s ease, background 0.3s ease',
+              transform: menuOpen ? 'translateY(-6.5px) rotate(-45deg)' : 'none',
+            }} />
           </button>
         </div>
 
-        {menuOpen && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', padding: '24px 32px', background: 'white', borderTop: '1px solid #eee' }}>
-            {NAV_LINKS.map(({ label, href }) => (
+        {/* Mobile dropdown — smooth slide */}
+        <div style={{
+          position: 'absolute',
+          top: '72px',
+          left: 0,
+          right: 0,
+          background: 'rgba(237,236,234,0.98)',
+          backdropFilter: 'blur(12px)',
+          zIndex: 998,
+          overflow: 'hidden',
+          maxHeight: menuOpen ? '320px' : '0px',
+          transition: 'max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+        }}>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            padding: menuOpen ? '24px 24px 32px' : '0 24px',
+            gap: '0',
+            transition: 'padding 0.35s ease',
+          }}>
+            {NAV_LINKS.map(({ label, href }, i) => (
               <a
                 key={label}
                 href={href}
-                style={{ color: '#111', textDecoration: 'none', fontSize: '16px', fontWeight: 500 }}
                 onClick={(e) => scrollTo(e, href)}
+                style={{
+                  color: '#1a1a18',
+                  textDecoration: 'none',
+                  fontSize: '17px',
+                  fontWeight: 500,
+                  padding: '14px 0',
+                  borderBottom: i < NAV_LINKS.length - 1 ? '0.5px solid rgba(26,26,24,0.08)' : 'none',
+                  opacity: menuOpen ? 1 : 0,
+                  transform: menuOpen ? 'translateY(0)' : 'translateY(-8px)',
+                  transition: `opacity 0.3s ease ${0.05 + i * 0.05}s, transform 0.3s ease ${0.05 + i * 0.05}s`,
+                  display: 'block',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = '0.55')}
+                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
               >
                 {label}
               </a>
             ))}
           </div>
-        )}
+        </div>
       </nav>
 
       <style>{`
+        .mobile-btn { display: none !important; }
         @media (max-width: 768px) {
           .desktop-menu { display: none !important; }
           .mobile-btn { display: flex !important; }

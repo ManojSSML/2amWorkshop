@@ -3,15 +3,15 @@
 import { useEffect, useRef, useState } from 'react';
 
 const IMAGES = [
-  'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&q=80',
-  'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80',
-  'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80',
-  'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
-  'https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=800&q=80',
-  'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80',
-  'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=800&q=80',
-  'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80',
-  'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80',
+  '/gallery/1.png',
+  '/gallery/2.png',
+  '/gallery/3.png',
+  '/gallery/4.png',
+  '/gallery/5.png',
+  '/gallery/6.png',
+  '/gallery/7.png',
+  '/gallery/8.png',
+  '/gallery/9.png',
 ];
 
 function RoomSection() {
@@ -53,7 +53,6 @@ function RoomSection() {
             fontFamily: 'var(--serif)',
             fontSize: 'clamp(2rem, 3.5vw, 2.8rem)',
             fontWeight: 400,
-            fontStyle: 'italic',
             textAlign: 'center',
             color: '#1a1a18',
             marginBottom: '64px',
@@ -80,8 +79,8 @@ function RoomSection() {
               style={{
                 borderRadius: '16px',
                 overflow: 'hidden',
-                aspectRatio: '4/3',
-                background: '#d4c9b4',
+                aspectRatio: '3/4',
+                background: '#1a1a18',
                 opacity: visible ? 1 : 0,
                 transform: visible ? 'translateY(0)' : 'translateY(32px)',
                 transition: `opacity 0.7s ease ${0.1 + i * 0.06}s, transform 0.7s ease ${0.1 + i * 0.06}s`,
@@ -94,7 +93,7 @@ function RoomSection() {
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
-                  objectPosition: 'center',
+                  objectPosition: 'top center',
                   display: 'block',
                   transition: 'transform 0.5s ease',
                 }}

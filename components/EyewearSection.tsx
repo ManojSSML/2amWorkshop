@@ -71,11 +71,11 @@ export default function EyewearSection() {
               color: 'rgba(255,255,255,0.82)',
             }}>
               Sometimes it begins with a question.
-Sometimes with a conversation.
-Sometimes with a workshop.
-And before you realize it,
-you're seeing possibilities you couldn't see before.
-At 2AMWORKSHOP.
+              Sometimes with a conversation.
+              Sometimes with a workshop.
+              And before you realize it,
+              you're seeing possibilities you couldn't see before.
+              At 2AMWORKSHOP.
 
             </p>
           </div>
