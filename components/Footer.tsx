@@ -1,6 +1,22 @@
 'use client';
 
 export default function Footer() {
+  const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.startsWith('#') || href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const NAV_LINKS = [
+    { label: 'Home',          href: '/'              },
+    { label: 'About Us',      href: '#agents'        },
+    { label: 'Why Us !!',     href: '#eyewear'       },
+    { label: 'Join Workshop', href: '#join'          },
+    { label: 'Partnerships',  href: '#partnerships'  },
+    { label: 'Community',     href: '#footer'        },
+  ];
+
   return (
     <footer id="footer" style={{
       background: '#1a0e0a',
@@ -14,17 +30,12 @@ export default function Footer() {
         padding: '0 32px',
       }}>
 
-        {/* Light logo image — clipped to 72px like navbar */}
+        {/* Light logo */}
         <div style={{ marginBottom: '32px', height: '90px', overflow: 'hidden', display: 'flex', alignItems: 'center', marginLeft: '-37px' }}>
           <img
             src="/logo-light.svg"
             alt="Logo"
-            style={{
-              height: '320px',
-              width: 'auto',
-              display: 'block',
-              opacity: 0.15,
-            }}
+            style={{ height: '320px', width: 'auto', display: 'block', opacity: 0.15 }}
           />
         </div>
 
@@ -35,30 +46,38 @@ export default function Footer() {
           gap: '16px 0',
           marginBottom: '32px',
         }}>
+
+          {/* Col 1 — main nav links (first 3) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            {['Home', 'Blog', 'Team'].map(item => (
-              <a key={item} href={`/${item.toLowerCase()}`} style={{
-                fontFamily: 'var(--sans)', fontSize: '15px', fontWeight: 400,
-                color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'color 0.2s',
-              }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.75)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
-              >{item}</a>
+            {NAV_LINKS.slice(0, 3).map(({ label, href }) => (
+              <a key={label} href={href}
+                onClick={(e) => scrollTo(e as React.MouseEvent<HTMLAnchorElement>, href)}
+                style={{
+                  fontFamily: 'var(--sans)', fontSize: '15px', fontWeight: 400,
+                  color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'color 0.2s',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.75)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
+              >{label}</a>
             ))}
           </div>
 
+          {/* Col 2 — remaining nav links */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            {['Mobile Preview', 'Research Preview', 'Contact us'].map(item => (
-              <a key={item} href="#" style={{
-                fontFamily: 'var(--sans)', fontSize: '15px', fontWeight: 400,
-                color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'color 0.2s',
-              }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.75)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
-              >{item}</a>
+            {NAV_LINKS.slice(3).map(({ label, href }) => (
+              <a key={label} href={href}
+                onClick={(e) => scrollTo(e as React.MouseEvent<HTMLAnchorElement>, href)}
+                style={{
+                  fontFamily: 'var(--sans)', fontSize: '15px', fontWeight: 400,
+                  color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'color 0.2s',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.75)')}
+                onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.45)')}
+              >{label}</a>
             ))}
           </div>
 
+          {/* Col 3 — socials */}
           <div className='social-col' style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {[
               { label: 'Instagram', icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg> },
@@ -77,36 +96,30 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Company address — below the link grid */}
+        {/* Address */}
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', marginBottom: '32px' }}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0, marginTop: '2px' }}>
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
             <circle cx="12" cy="9" r="2.5"/>
           </svg>
-          <span style={{
-            fontFamily: 'var(--sans)',
-            fontSize: '14px',
-            fontWeight: 500,
-            color: 'rgba(255,255,255,0.35)',
-            lineHeight: '1.5',
-          }}>
+          <span style={{ fontFamily: 'var(--sans)', fontSize: '14px', fontWeight: 500, color: 'rgba(255,255,255,0.35)', lineHeight: '1.5' }}>
             1 Ropemaker St, Moorgate, London EC2Y 9AW
           </span>
         </div>
 
-        {/* Bottom bar — copyright left, links right, same line */}
+        {/* Bottom bar */}
         <div style={{
           borderTop: '1px solid rgba(255,255,255,0.06)',
           paddingTop: '24px',
           display: 'flex',
           alignItems: 'flex-start',
-          justifyContent: "flex-start",
-          flexDirection: "column",
+          justifyContent: 'flex-start',
+          flexDirection: 'column',
           flexWrap: 'wrap',
           gap: '12px',
         }}>
           <span style={{ fontFamily: 'var(--sans)', fontSize: '13px', color: 'rgba(255,255,255,0.3)' }}>
-            Copyright © 2026 Sesame AI Inc. All rights reserved.
+            Copyright © 2026 2AMWORKSHOP Inc. All rights reserved.
           </span>
           <div style={{ display: 'flex', gap: '20px' }}>
             {['Terms and conditions', 'Privacy policy'].map(item => (
@@ -124,16 +137,8 @@ export default function Footer() {
       </div>
       <style>{`
         @media (max-width: 640px) {
-          .footer-grid {
-            grid-template-columns: 1fr 1fr !important;
-            gap: 32px 0 !important;
-          }
-          .social-col {
-            grid-column: 1 / -1 !important;
-            flex-direction: row !important;
-            gap: 24px !important;
-            flex-wrap: wrap !important;
-          }
+          .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px 0 !important; }
+          .social-col { grid-column: 1 / -1 !important; flex-direction: row !important; gap: 24px !important; flex-wrap: wrap !important; }
         }
       `}</style>
     </footer>

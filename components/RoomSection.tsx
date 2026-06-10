@@ -2,7 +2,7 @@
 
 const IMAGES = [
   '/gallery/1.png',
-  '/gallery/2.png',
+  '/gallery/2.jpeg',
   '/gallery/3.png',
   '/gallery/4.png',
   '/gallery/5.png',
