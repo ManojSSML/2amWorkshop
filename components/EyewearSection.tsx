@@ -87,7 +87,7 @@ export default function EyewearSection() {
               Sometimes with a workshop,
               And before you realize it,
               you're seeing possibilities you couldn't see before,
-              At 2AMWORKSHOP.
+              At 2AMWorkshop.
             </p>
           </div>
         </div>

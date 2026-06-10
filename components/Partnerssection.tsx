@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from 'react';
 
 const LOGOS = [
-  { src: '/partners/3.svg', alt: 'Partner 1' },
   { src: '/partners/4.svg', alt: 'Partner 2' },
   { src: '/partners/5.svg', alt: 'Partner 3' },
   { src: '/partners/6.svg', alt: 'Partner 4' },
