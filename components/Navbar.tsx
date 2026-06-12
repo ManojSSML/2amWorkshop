@@ -11,12 +11,22 @@ const NAV_LINKS = [
   { label: 'Community', href: '#footer' },
 ];
 
+// --- Gradient tuning knobs -------------------------------------------------
+const SCROLL_RANGE = 250; // px of scroll over which the gradient ramps to full
+const BASE_STRENGTH = 0.35; // gradient opacity at the very top (scrollY = 0)
+const MAX_STRENGTH = 1; // gradient opacity once fully scrolled
+const GRADIENT_HEIGHT = 170; // px height of the dark band that fades downward
+// ---------------------------------------------------------------------------
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
+  const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+
+    const update = () => {
       const NAVBAR_HEIGHT = 72;
 
       const lightSections = document.querySelectorAll(
@@ -28,25 +38,30 @@ export default function Navbar() {
       lightSections.forEach((section) => {
         const rect = (section as HTMLElement).getBoundingClientRect();
 
-        if (
-          rect.top <= NAVBAR_HEIGHT &&
-          rect.bottom > NAVBAR_HEIGHT
-        ) {
+        if (rect.top <= NAVBAR_HEIGHT && rect.bottom > NAVBAR_HEIGHT) {
           overLight = true;
         }
       });
 
       setIsDark(!overLight);
+      setScrollY(window.scrollY);
+
+      ticking = false;
     };
 
-    window.addEventListener('scroll', handleScroll, {
-      passive: true,
-    });
+    // rAF throttle so we don't trigger a re-render on every scroll event
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
 
-    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
-    return () =>
-      window.removeEventListener('scroll', handleScroll);
+    update();
+
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const scrollTo = (
@@ -71,9 +86,16 @@ export default function Navbar() {
 
   const textColor = isDark ? '#ffffff' : '#111111';
 
-  const navbarBg = isDark
-    ? 'transparent'
-    : 'rgba(237,236,234,0.95)';
+  // Solid light bar when over a light section; transparent when dark so the
+  // gradient overlay below shows through.
+  const navbarBg = isDark ? 'transparent' : 'rgba(237,236,234,0.95)';
+
+  // Gradient strength: starts at BASE_STRENGTH and climbs toward MAX_STRENGTH
+  // as the user scrolls. Forced to 0 (vanishes) when over a light section.
+  const gradientStrength = isDark
+    ? BASE_STRENGTH +
+      Math.min(scrollY / SCROLL_RANGE, 1) * (MAX_STRENGTH - BASE_STRENGTH)
+    : 0;
 
   const linkStyle: React.CSSProperties = {
     color: textColor,
@@ -88,6 +110,26 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Scroll-driven black gradient overlay.
+          Sits behind the navbar (lower z-index, transparent nav bg lets it
+          show through). pointer-events: none so it never blocks clicks.
+          Its opacity rises with scroll and fades to 0 over light sections. */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: `${GRADIENT_HEIGHT}px`,
+          zIndex: 900,
+          pointerEvents: 'none',
+          background:
+            'linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 45%, rgba(0,0,0,0) 100%)',
+          opacity: gradientStrength,
+          transition: 'opacity 0.4s ease',
+        }}
+      />
+
       <nav
         style={{
           position: 'fixed',

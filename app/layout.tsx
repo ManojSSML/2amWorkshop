@@ -2,8 +2,15 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Sesame',
-  description: 'Sesame builds personal agents for curious people.',
+  title: '2AMWorkshop',
+  description:
+  '2AMWorkshop offers interactive workshops, skill development programs, community learning experiences, and networking opportunities for students, professionals, and lifelong learners.',
+  icons: {
+    icon: [
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+    ],
+    // apple: '/apple-icon.png', // optional: add a 180x180 png for iOS home screen
+  },
 };
 
 export const viewport: Viewport = {
